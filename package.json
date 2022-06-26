@@ -1,0 +1,21 @@
+{
+  "name": "@hackathon-climat-05/auth-microservice",
+  "version": "1.0.0",
+  "description": "Authentication microservice for Greenmile.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackathon-climat-05/auth-microservice.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hackathon-climat-05/auth-microservice/issues"
+  },
+  "homepage": "https://github.com/hackathon-climat-05/auth-microservice#readme",
+  "dependencies": {
+    "@hackathon-climat-05/common-lib": ">=0.0.0"
+  }
+}
