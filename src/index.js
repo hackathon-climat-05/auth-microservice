@@ -1,5 +1,7 @@
 const express = require('express')
-const CommonLib = require("@hackathon-climat-05/common-lib")
+const dotenv = require('dotenv').config()
+const CommonLib = require("@hackathon-climat-05/common-lib");
+const oauth = require('./oauht.js');
 const app = express();
 app.use(express.json());
 
@@ -16,8 +18,17 @@ app.get('/livez', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-    console.log(req.body.credential)
-    return res.sendStatus(200)
+    // on déchiffre le JWT
+    // si ce n'est pas dans notre base de données on le register
+
+    const authorizationUrl = await oauth.getAuthorizationUrl();
+    console.log(authorizationUrl)
+
+    res.status(301).json({Location: authorizationUrl})
+})
+
+app.post('/register', async (req, res) => {
+    console.log(req.body);
 })
 
 app.listen(PORT, HOST, () => {
