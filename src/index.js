@@ -1,5 +1,4 @@
 const express = require('express')
-const {google} = require('googleapis');
 const CommonLib = require("@hackathon-climat-05/common-lib")
 const app = express();
 app.use(express.json());
