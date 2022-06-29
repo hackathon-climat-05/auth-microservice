@@ -1,15 +1,20 @@
-import { DataSource } from "typeorm"
-import User from "./entity/User"
+import mysql, { Connection } from 'mysql2/promise'
+import User from './entity/User'
 
-export const dataSource = new DataSource({
-    type: "mariadb",
+let connection: Connection = null
+
+export const initialize = async () => {
+  connection = await mysql.createConnection({
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT, 10),
-    username: process.env.DB_USER,
+    user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    entities: [User],
-    synchronize: process.env.NODE_ENV === "development"
-})
+    database: process.env.DB_DATABASE
+  })
 
-export const entityManager = dataSource.manager
+ await Promise.all([
+    User.createTable()
+ ])
+}
+
+export default () => connection

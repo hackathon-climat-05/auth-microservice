@@ -1,7 +1,6 @@
 import { Auth } from 'googleapis'
 import { Router } from 'express'
 import User from './entity/User'
-import { entityManager } from './database'
 
 const oauth2Client = new Auth.OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
@@ -39,20 +38,18 @@ router.post('/login', async (req, res) => {
 
         const info = await oauth2Client.getTokenInfo(tokens.access_token)
 
-        let user = null
+        let user: User = null
         try {
-            user = await entityManager.createQueryBuilder(User, 'user')
-                .where('user.google_user_id = :id', { id: info.sub })
-                .getOne()
+            user = await User.getByGoogleId(info.sub)
         } catch (error) {}
 
         if (user === null) {
             user = new User()
-            user.google_user_id = info.sub
+            user.google_id = info.sub
             user.google_access_token = tokens.access_token
             user.google_refresh_token = tokens.refresh_token
             user.google_expiry_date = tokens.expiry_date
-            await entityManager.save(user)
+            await user.create()
         }
 
         res.status(200).json({

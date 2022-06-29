@@ -1,16 +1,14 @@
-import "reflect-metadata"
-
 import dotenv from 'dotenv'
 dotenv.config()
 
 import express from 'express'
-// import CommonLib from "@hackathon-climat-05/common-lib"
-import googleRouter from "./google"
-import jwtRouter from "./jwt"
-import { dataSource } from "./database"
+// import CommonLib from '@hackathon-climat-05/common-lib'
+import googleRouter from './google'
+import jwtRouter from './jwt'
+import { initialize } from './database'
 
-const PORT = parseInt(process.env.PORT || "8080", 10)
-const HOST = process.env.HOST || "0.0.0.0"
+const PORT = parseInt(process.env.PORT || '8080', 10)
+const HOST = process.env.HOST || '0.0.0.0'
 
 const app = express()
 
@@ -30,7 +28,7 @@ app.get('/*', (req, res) => {
     res.status(404).json({})
 })
 
-dataSource.initialize().then(async () => {
+initialize().then(async () => {
     app.listen(PORT, HOST, () => {
         console.log(`${new Date().toISOString()} - Running on http://${HOST}:${PORT}`)
     })
