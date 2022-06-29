@@ -5,8 +5,8 @@ const oauth = require('./oauht.js');
 const app = express();
 app.use(express.json());
 
-const PORT = 8080
-const HOST = "0.0.0.0"
+const PORT = process.env.PORT || 8080
+const HOST = process.env.HOST || "0.0.0.0"
 
 app.get('/', async (req, res) => {
     console.log(req)
