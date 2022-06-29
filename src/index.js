@@ -1,20 +1,26 @@
-const http = require("http")
+const express = require('express')
+const {google} = require('googleapis');
 const CommonLib = require("@hackathon-climat-05/common-lib")
+const app = express();
+app.use(express.json());
 
 const PORT = 8080
 const HOST = "0.0.0.0"
 
-const server = http.createServer((req, res) => {
-    console.log(`${new Date().toISOString()} - ${req.socket.remoteAddress} - ${req.method} http://${req.headers.host}${req.url}`)
-
-    res.writeHead(200, {
-        "Content-Type": "application/json"
-    })
-    res.write(JSON.stringify({
-        hello: "world"
-    }))
-    res.end()
+app.get('/', async (req, res) => {
+    console.log(req)
+    return res.status(200).json({hello: 'world'})
 })
 
-server.listen(PORT, HOST)
-console.log(`${new Date().toISOString()} - Running on http://${HOST}:${PORT}`)
+app.get('/livez', async (req, res) => {
+    return res.sendStatus(200)
+})
+
+app.post('/login', async (req, res) => {
+    console.log(req.body.credential)
+    return res.sendStatus(200)
+})
+
+app.listen(PORT, HOST, () => {
+  console.log(`${new Date().toISOString()} - Running on http://${HOST}:${PORT}`)
+})
