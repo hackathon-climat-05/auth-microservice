@@ -1,8 +1,7 @@
 import express from 'express'
-// import CommonLib from '@hackathon-climat-05/common-lib'
 import googleRouter from './google'
 import jwtRouter from './jwt'
-import { initialize } from './database'
+import { initializeDatabase } from '@hackathon-climat-05/common-lib'
 
 const PORT = parseInt(process.env.PORT || '8080', 10)
 const HOST = process.env.HOST || '0.0.0.0'
@@ -25,7 +24,7 @@ app.get('/*', (req, res) => {
     res.status(404).json({})
 })
 
-initialize().then(async () => {
+initializeDatabase().then(async () => {
     app.listen(PORT, HOST, () => {
         console.log(`${new Date().toISOString()} - Running on http://${HOST}:${PORT}`)
     })

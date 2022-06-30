@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import User from './entity/User'
+import { User } from '@hackathon-climat-05/common-lib'
 
 const router = Router()
 

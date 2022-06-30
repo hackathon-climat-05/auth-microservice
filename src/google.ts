@@ -1,6 +1,6 @@
 import { Auth } from 'googleapis'
 import { Router } from 'express'
-import User from './entity/User'
+import { User } from '@hackathon-climat-05/common-lib'
 
 const oauth2Client = new Auth.OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
