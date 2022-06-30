@@ -18,7 +18,6 @@
   "homepage": "https://github.com/hackathon-climat-05/auth-microservice#readme",
   "dependencies": {
     "@hackathon-climat-05/common-lib": ">=0.0.0",
-    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "googleapis": "^104.0.0",
     "jsonwebtoken": "^8.5.1",

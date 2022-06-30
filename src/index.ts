@@ -1,6 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
 import express from 'express'
 // import CommonLib from '@hackathon-climat-05/common-lib'
 import googleRouter from './google'
