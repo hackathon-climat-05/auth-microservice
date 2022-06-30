@@ -4,8 +4,8 @@
   "description": "Authentication microservice for Greenmile.",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon -x ts-node src/index.ts"
+    "start": "./node_modules/.bin/ts-node src/index.ts",
+    "dev": "./node_modules/.bin/nodemon -x ./node_modules/.bin/ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,15 @@
   "homepage": "https://github.com/hackathon-climat-05/auth-microservice#readme",
   "dependencies": {
     "@hackathon-climat-05/common-lib": ">=0.0.0",
-    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "googleapis": "^104.0.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.3",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^18.0.0",
     "nodemon": "^2.0.18",
     "ts-node": "^10.8.1"
